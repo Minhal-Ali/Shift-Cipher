@@ -15,13 +15,115 @@ namespace Shift_Cipher
             int tempValue;
             for (int i = 0; i < message.Length; i++)
             {
-                if(isEncrypt)
-                    tempValue = (int)tempMessage[i] + shift;
+                if (tempMessage[i] != ' ')
+                {
+                    if (isEncrypt)
+                    {
+                        if (Char.IsUpper(tempMessage[i]))
+                            tempValue = manageCapitalLetters(tempMessage[i], shift, isEncrypt);
+                        else
+                            tempValue = manageSmallLetters(tempMessage[i], shift, isEncrypt);
+                    }
+                    else
+                    {
+                        if (Char.IsUpper(tempMessage[i]))
+                            tempValue = manageCapitalLetters(tempMessage[i], shift, isEncrypt);
+                        else
+                            tempValue = manageSmallLetters(tempMessage[i], shift, isEncrypt);
+                    }
+                }
                 else
-                    tempValue = (int)tempMessage[i] - shift;
+                    tempValue = tempMessage[i];
                 finalMessage += (char)tempValue;
             }
             return finalMessage;
         }
+
+        private static int manageCapitalLetters(char letter,int shift,bool isEncryption)
+        {
+            int charAsciVal = (int)letter;
+            int i = 0;
+            if (isEncryption)
+            {
+                while (i < shift)
+                {
+                    if (charAsciVal == 90)
+                    {
+                        charAsciVal = 65;
+                    }
+                    else
+                    {
+                        charAsciVal++;
+                    }
+                    ++i;
+                }
+            }
+            else
+            {
+                while (i < shift)
+                {
+                    if (charAsciVal == 65)
+                    {
+                        charAsciVal = 90;
+                    }
+                    else
+                    {
+                            charAsciVal--;
+                    }
+                    ++i;
+                }
+            }
+            return charAsciVal;
+        }
+
+        private static int manageSmallLetters(char letter, int shift,bool isEncryption)
+        {
+            int charAsciVal = (int)letter;
+            int i = 0;
+            if (isEncryption)
+            {
+                while (i < shift)
+                {
+                    if (charAsciVal == 122)
+                    {
+                        charAsciVal = 97;
+                    }
+                    else
+                    {
+                        charAsciVal++;
+                    }
+                    ++i;
+                }
+            }
+            else
+            {
+                while (i < shift)
+                {
+                    if (charAsciVal == 97)
+                    {
+                        charAsciVal = 122;
+                    }
+                    else
+                    {
+                            charAsciVal--;
+                    }
+                    ++i;
+                }
+            }
+            return charAsciVal;
+        }
     }
 }
+//tempValue = (int) tempMessage[i] + shift;
+//if (charAsciVal == 90)
+//                    {
+//                        charAsciVal = 65;
+//                    }
+//                    else
+//                    {
+//                        if (charAsciVal == 65)
+//                            charAsciVal=90;
+//                        else
+//                            charAsciVal--;
+//                    }
+//                    ++i;

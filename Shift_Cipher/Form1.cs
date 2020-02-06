@@ -16,12 +16,17 @@ namespace Shift_Cipher
         {
             InitializeComponent();
             encryptTechComboBox.Items.Add("Shift Cipher");
+            encryptTechComboBox.Items.Add("Vigenere Cipher");
+            Vigenere.initializeAlphabeticMatrix();
+            Vigenere.initializeAlphabeticArray();
         }
 
         private void encryptMsgTextBtn_Click(object sender, EventArgs e)
         {
             if (encryptTechComboBox.Text == "Shift Cipher")
                 encryptAccordingToShiftCipher(true);
+            else if (encryptTechComboBox.Text == "Vigenere Cipher")
+                encryptAccordingToVigenereCipher(true);
             else
                 MessageBox.Show("Please Select The Technique First");
         }
@@ -46,6 +51,8 @@ namespace Shift_Cipher
         {
             if (encryptTechComboBox.Text == "Shift Cipher")
                 decryptAccordingToShiftCipher(false);
+            else if (encryptTechComboBox.Text == "Vigenere Cipher")
+                decryptAccordingToVigenereCipher(false);
             else
                 MessageBox.Show("Please Select The Technique First");
         }
@@ -53,6 +60,24 @@ namespace Shift_Cipher
         private void decryptAccordingToShiftCipher(bool isEncrypt)
         {
             richTextBox1.Text = Shift.manipulateMessage(richTextBox2.Text, Convert.ToInt32(numericUpDown1.Value), isEncrypt);
+            richTextBox2.Text = null;
+        }
+
+        private void encryptAccordingToVigenereCipher(bool isEncrypt)
+        {
+            if ("Please Insert the key" == Vigenere.manipulateMessage(richTextBox1.Text, keyTxtBox.Text, isEncrypt))
+                keyTxtBox.Text = Vigenere.manipulateMessage(richTextBox1.Text, keyTxtBox.Text, isEncrypt);
+            else
+                richTextBox2.Text = Vigenere.manipulateMessage(richTextBox1.Text, keyTxtBox.Text, isEncrypt);
+            richTextBox1.Text = null;
+        }
+
+        private void decryptAccordingToVigenereCipher(bool isEncrypt)
+        {
+            if ("Please Insert the key" == Vigenere.manipulateMessage(richTextBox2.Text, keyTxtBox.Text, isEncrypt))
+                keyTxtBox.Text = Vigenere.manipulateMessage(richTextBox2.Text, keyTxtBox.Text, isEncrypt);
+            else
+                richTextBox1.Text = Vigenere.manipulateMessage(richTextBox2.Text, keyTxtBox.Text, isEncrypt);
             richTextBox2.Text = null;
         }
     }

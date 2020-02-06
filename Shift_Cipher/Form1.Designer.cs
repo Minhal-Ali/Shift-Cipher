@@ -40,6 +40,8 @@
             this.encryptTextClearBtn = new System.Windows.Forms.Button();
             this.encryptMsgTextBtn = new System.Windows.Forms.Button();
             this.decryptMsgBtn = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.keyTxtBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -107,7 +109,7 @@
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(353, 274);
+            this.numericUpDown1.Location = new System.Drawing.Point(351, 162);
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(78, 20);
             this.numericUpDown1.TabIndex = 6;
@@ -118,7 +120,7 @@
             this.ShiftLabel.BackColor = System.Drawing.SystemColors.Control;
             this.ShiftLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ShiftLabel.ForeColor = System.Drawing.Color.Olive;
-            this.ShiftLabel.Location = new System.Drawing.Point(364, 251);
+            this.ShiftLabel.Location = new System.Drawing.Point(363, 139);
             this.ShiftLabel.Name = "ShiftLabel";
             this.ShiftLabel.Size = new System.Drawing.Size(48, 20);
             this.ShiftLabel.TabIndex = 7;
@@ -192,12 +194,33 @@
             this.decryptMsgBtn.UseVisualStyleBackColor = true;
             this.decryptMsgBtn.Click += new System.EventHandler(this.decryptMsgBtn_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.SystemColors.Control;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Olive;
+            this.label1.Location = new System.Drawing.Point(371, 245);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(40, 20);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "Key";
+            // 
+            // keyTxtBox
+            // 
+            this.keyTxtBox.Location = new System.Drawing.Point(321, 268);
+            this.keyTxtBox.Name = "keyTxtBox";
+            this.keyTxtBox.Size = new System.Drawing.Size(149, 20);
+            this.keyTxtBox.TabIndex = 13;
+            // 
             // ShiftCipher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(800, 347);
+            this.Controls.Add(this.keyTxtBox);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.decryptMsgBtn);
             this.Controls.Add(this.encryptMsgTextBtn);
             this.Controls.Add(this.encryptTextClearBtn);
@@ -234,6 +257,8 @@
         private System.Windows.Forms.Button encryptTextClearBtn;
         private System.Windows.Forms.Button encryptMsgTextBtn;
         private System.Windows.Forms.Button decryptMsgBtn;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox keyTxtBox;
     }
 }
 
