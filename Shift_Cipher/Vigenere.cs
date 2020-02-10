@@ -54,6 +54,8 @@ namespace Shift_Cipher
                         keyIter = 0;
                     if (msgArray[i] != ' ')
                         keyString += keyArray[keyIter++];
+                    else
+                        keyString += ' ';
                 }
                 char[] keyStringArr = keyString.ToCharArray();
                 if (isEncrypt)
@@ -69,14 +71,22 @@ namespace Shift_Cipher
         {
             string finalString = "";
             int row, col;
+            row = col = 0;
             for (int i = 0; i < msgArray.Length; i++)
             {
-                col=Array.IndexOf(alphabeticArr, char.ToUpper(msgArray[i]));
-                row=Array.IndexOf(alphabeticArr, char.ToUpper(keyStringArr[i]));
-                if(char.IsUpper(msgArray[i]))
-                    finalString+= alphabeticMat[row, col];
+                if (msgArray[i] != ' ')
+                {
+                    col = Array.IndexOf(alphabeticArr, char.ToUpper(msgArray[i]));
+                    row = Array.IndexOf(alphabeticArr, char.ToUpper(keyStringArr[i]));
+                    if (char.IsUpper(msgArray[i]))
+                        finalString += alphabeticMat[row, col];
+                    else if (msgArray[i] == ' ')
+                        finalString += msgArray[i];
+                    else
+                        finalString += char.ToLower(alphabeticMat[row, col]);
+                }
                 else
-                    finalString += char.ToLower(alphabeticMat[row, col]);
+                    finalString += ' ';
             }
             return finalString;
         }
@@ -90,19 +100,29 @@ namespace Shift_Cipher
                 row = Array.IndexOf(alphabeticArr, char.ToUpper(keyStringArr[i]));
                 for (int j = 0; j < alphabeticArr.Length; j++)
                 {
-                    if (char.IsUpper(msgArray[i]))
+                    if (msgArray[i] != ' ')
                     {
-                        if (alphabeticMat[row, j] == msgArray[i])
+                        if (char.IsUpper(msgArray[i]))
                         {
-                            finalString += alphabeticArr[j];
+                            if (alphabeticMat[row, j] == msgArray[i])
+                            {
+                                finalString += alphabeticArr[j];
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            if (alphabeticMat[row, j] == char.ToUpper(msgArray[i]))
+                            {
+                                finalString += char.ToLower(alphabeticArr[j]);
+                                break;
+                            }
                         }
                     }
                     else
                     {
-                        if (alphabeticMat[row, j] == char.ToUpper(msgArray[i]))
-                        {
-                            finalString += char.ToLower(alphabeticArr[j]);
-                        }
+                        finalString += ' ';
+                        break;
                     }
                 }
             }
